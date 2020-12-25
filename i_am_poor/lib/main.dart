@@ -9,6 +9,11 @@ void main() => runApp(
         backgroundColor: Colors.blueGrey[600],
       ),
       backgroundColor: Colors.blueGrey[200],
+      body: Center(
+        child: Image(
+          image: AssetImage('images/coal.png'),
+        ),
+      ),
     ),
   ),
 );
