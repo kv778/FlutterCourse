@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'results_page.dart';
 
 import 'reusable_card.dart';
 import 'gender_card.dart';
@@ -226,19 +227,31 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 15.0),
-            color: kBottomContainerColor,
-            height: kBottomContainerHeight,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                'CALCULATE YOUR BMI',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {
+              setState(() {
+               Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                   builder: (context) => ResultsPage(),
+                 ),
+               );
+              });
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 15.0),
+              color: kBottomContainerColor,
+              height: kBottomContainerHeight,
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  'CALCULATE YOUR BMI',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
