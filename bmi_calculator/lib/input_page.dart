@@ -14,6 +14,7 @@ enum Gender {
 int height = 170;
 int weight = 60;
 int age = 20;
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -136,7 +137,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                      colour: kActiveCardColor,
+                    colour: kActiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -152,24 +153,24 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundIconButton(
-                                displayIcon: FontAwesomeIcons.minus,
+                              displayIcon: FontAwesomeIcons.minus,
                               onPress: () {
-                                  setState(() {
-                                    if(weight > 0) {
-                                      weight--;
-                                    }
-                                  });
+                                setState(() {
+                                  if (weight > 0) {
+                                    weight--;
+                                  }
+                                });
                               },
                             ),
                             SizedBox(
                               width: 15.0,
                             ),
                             RoundIconButton(
-                                displayIcon: FontAwesomeIcons.plus,
-                              onPress: (){
-                                  setState(() {
-                                    weight++;
-                                  });
+                              displayIcon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  weight++;
+                                });
                               },
                             ),
                           ],
@@ -180,7 +181,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                      colour: kActiveCardColor,
+                    colour: kActiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -197,9 +198,9 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             RoundIconButton(
                               displayIcon: FontAwesomeIcons.minus,
-                              onPress: (){
+                              onPress: () {
                                 setState(() {
-                                  if(age > 0) {
+                                  if (age > 0) {
                                     age--;
                                   }
                                 });
@@ -210,9 +211,9 @@ class _InputPageState extends State<InputPage> {
                             ),
                             RoundIconButton(
                               displayIcon: FontAwesomeIcons.plus,
-                              onPress: (){
+                              onPress: () {
                                 setState(() {
-                                  if(age < 100) {
+                                  if (age < 100) {
                                     age++;
                                   }
                                 });
@@ -230,12 +231,12 @@ class _InputPageState extends State<InputPage> {
           GestureDetector(
             onTap: () {
               setState(() {
-               Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                   builder: (context) => ResultsPage(),
-                 ),
-               );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(),
+                  ),
+                );
               });
             },
             child: Container(
