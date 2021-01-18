@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class ResultsPage extends StatelessWidget {
+
+  ResultsPage({this.result, this.bmiResult, this.interpretation});
+
+  final result;
+  final bmiResult;
+  final interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
