@@ -17,10 +17,10 @@ class CalcBrain {
   }
 
   String calcResult() {
-    if(_bmi >= 25) {
+    if(_bmi > 25) {
       _result = 'Overweight';
     }
-    else if(_bmi >= 18) {
+    else if(_bmi > 18) {
       _result = 'Normal';
     }
     else {
@@ -30,10 +30,10 @@ class CalcBrain {
   }
 
   String calcInterpretation() {
-    if(_bmi >= 25) {
+    if(_bmi > 25) {
       _interpretation = 'Your BMI is quite high, you should exercise more.';
     }
-    else if(_bmi >= 18) {
+    else if(_bmi > 18) {
       _interpretation = 'Your BMI is Normal. Good job!';
     }
     else {

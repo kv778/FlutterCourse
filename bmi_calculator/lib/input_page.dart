@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'results_page.dart';
+import 'bmi_calculator.dart';
 
 import 'reusable_card.dart';
 import 'gender_card.dart';
@@ -231,10 +232,17 @@ class _InputPageState extends State<InputPage> {
           GestureDetector(
             onTap: () {
               setState(() {
+
+                CalcBrain obj = CalcBrain(height: height, weight: weight);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultsPage(),
+                    builder: (context) => ResultsPage(
+                      result: obj.calcResult(),
+                      bmiResult: obj.calcBMI(),
+                      interpretation: obj.calcInterpretation(),
+                    ),
                   ),
                 );
               });
