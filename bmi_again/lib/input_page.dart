@@ -33,16 +33,30 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: ReusableCard(
-                      colour: kInactiveCardColor,
-                    cardChild: GenderCard(genderIcon: FontAwesomeIcons.mars, gender: 'MALE'),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        print('Male card pressed');
+                      });
+                    },
+                    child: ReusableCard(
+                        colour: kInactiveCardColor,
+                      cardChild: GenderCard(genderIcon: FontAwesomeIcons.mars, gender: 'MALE'),
+                    ),
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: ReusableCard(
-                    colour: kInactiveCardColor,
-                    cardChild: GenderCard(genderIcon: FontAwesomeIcons.venus, gender: 'FEMALE',),
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        print('Female card pressed');
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: kInactiveCardColor,
+                      cardChild: GenderCard(genderIcon: FontAwesomeIcons.venus, gender: 'FEMALE',),
+                    ),
                   ),
                 ),
               ],
