@@ -3,12 +3,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'gender_card.dart';
 
+enum Gender {
+  Male,
+  Female,
+}
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+
+  Gender selectedGender;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +43,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        print('Male card pressed');
+                        selectedGender = Gender.Male;
                       });
                     },
                     child: ReusableCard(
-                        colour: kInactiveCardColor,
+                        colour: selectedGender == Gender.Male? kActiveCardColor : kInactiveCardColor,
                       cardChild: GenderCard(genderIcon: FontAwesomeIcons.mars, gender: 'MALE'),
                     ),
                   ),
@@ -50,11 +57,11 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        print('Female card pressed');
+                        selectedGender = Gender.Female;
                       });
                     },
                     child: ReusableCard(
-                      colour: kInactiveCardColor,
+                      colour: selectedGender == Gender.Female? kActiveCardColor : kInactiveCardColor,
                       cardChild: GenderCard(genderIcon: FontAwesomeIcons.venus, gender: 'FEMALE',),
                     ),
                   ),
@@ -63,7 +70,7 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: ReusableCard(colour: kInactiveCardColor),
+            child: ReusableCard(colour: kActiveCardColor),
           ),
           Expanded(
             child: Row(
@@ -72,11 +79,11 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: ReusableCard(colour: kInactiveCardColor),
+                  child: ReusableCard(colour: kActiveCardColor),
                 ),
                 Expanded(
                   flex: 1,
-                  child: ReusableCard(colour: kInactiveCardColor),
+                  child: ReusableCard(colour: kActiveCardColor),
                 ),
               ],
             ),
