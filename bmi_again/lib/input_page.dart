@@ -242,6 +242,17 @@ class _InputPageState extends State<InputPage> {
             height: kBottomContainerHeight,
             width: double.infinity,
             margin: EdgeInsets.only(top: 15.0),
+            child: Center(
+              child: Text(
+                'CALCULATE YOUR BMI',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.0,
+                ),
+              ),
+            ),
           ),
         ],
       ),
