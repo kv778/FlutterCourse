@@ -1,6 +1,7 @@
 import 'package:bmi_again/constants.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
+import 'package:bmi_again/components/reusable_card.dart';
+import 'package:bmi_again/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
   @override
@@ -54,22 +55,11 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          BottomButton(
+            buttonText: 'RE-CALCULATE',
+            onPress: () {
               Navigator.pop(context);
             },
-            child: Container(
-              color: kBottomContainerColor,
-              height: kBottomContainerHeight,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 15.0),
-              child: Center(
-                child: Text(
-                  'RE-CALCULATE',
-                  style: kBottomContainerTextStyle,
-                ),
-              ),
-            ),
           ),
         ],
       ),
