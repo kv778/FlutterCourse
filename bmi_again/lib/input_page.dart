@@ -21,6 +21,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 170;
   int weight = 70;
+  int age = 25;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,7 +189,50 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: ReusableCard(colour: kActiveCardColor),
+                  child: ReusableCard(
+                    colour: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kGenderTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              buttonIcon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  if(age < 100)
+                                    ++age;
+                                });
+                              },
+                            ),
+                            RoundIconButton(
+                              buttonIcon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  if(age > 0)
+                                    --age;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
