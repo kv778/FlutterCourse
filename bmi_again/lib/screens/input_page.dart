@@ -1,3 +1,4 @@
+import 'package:bmi_again/screens/results_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +7,7 @@ import 'package:bmi_again/components/gender_card.dart ';
 import '../constants.dart';
 import 'package:bmi_again/components/round_icon_button.dart';
 import '../components/bottom_button.dart';
+import 'package:bmi_again/calculator_brain.dart';
 
 enum Gender {
   Male,
@@ -165,20 +167,20 @@ class _InputPageState extends State<InputPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             RoundIconButton(
-                              buttonIcon: FontAwesomeIcons.plus,
-                              onPress: () {
-                                setState(() {
-                                  if(weight < 150)
-                                    ++weight;
-                                });
-                              },
-                            ),
-                            RoundIconButton(
                               buttonIcon: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   if(weight > 10)
                                     --weight;
+                                });
+                              },
+                            ),
+                            RoundIconButton(
+                              buttonIcon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  if(weight < 150)
+                                    ++weight;
                                 });
                               },
                             ),
@@ -212,20 +214,20 @@ class _InputPageState extends State<InputPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             RoundIconButton(
-                              buttonIcon: FontAwesomeIcons.plus,
-                              onPress: () {
-                                setState(() {
-                                  if(age < 100)
-                                    ++age;
-                                });
-                              },
-                            ),
-                            RoundIconButton(
                               buttonIcon: FontAwesomeIcons.minus,
                               onPress: () {
                                 setState(() {
                                   if(age > 0)
                                     --age;
+                                });
+                              },
+                            ),
+                            RoundIconButton(
+                              buttonIcon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  if(age < 100)
+                                    ++age;
                                 });
                               },
                             ),
@@ -241,9 +243,17 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonText: 'CALCULATE',
             onPress: () {
-              setState(() {
-                Navigator.pushNamed(context, '/second');
-              });
+              CalculatorBrain obj = CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    resultText: obj.getResults(),
+                    bmiResult: obj.calculateBMI(),
+                    interpretation: obj.getInterpretation(),
+                  ),
+                ),
+              );
             },
           ),
         ],
