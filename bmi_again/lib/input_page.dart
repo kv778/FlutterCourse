@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'gender_card.dart';
+import 'constants.dart';
 
 enum Gender {
   Male,
@@ -16,6 +18,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
+  int height = 170;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +69,51 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: ReusableCard(colour: kActiveCardColor),
+            child: ReusableCard(
+              colour: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(''
+                          'HEIGHT',
+                        style: kGenderTextStyle,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        ' cm',
+                        style: kGenderTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
+                    min: 120.0,
+                    max: 220.0,
+                    value: height.toDouble(),
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.toInt();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Row(
