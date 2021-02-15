@@ -40,30 +40,26 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedGender = Gender.Male;
-                      });
+                  child: ReusableCard(
+                    colour: selectedGender == Gender.Male? kActiveCardColor : kInactiveCardColor,
+                    onPress: () {
+                        setState(() {
+                          selectedGender = Gender.Male;
+                        });
                     },
-                    child: ReusableCard(
-                        colour: selectedGender == Gender.Male? kActiveCardColor : kInactiveCardColor,
-                      cardChild: GenderCard(genderIcon: FontAwesomeIcons.mars, gender: 'MALE'),
-                    ),
+                    cardChild: GenderCard(genderIcon: FontAwesomeIcons.mars, gender: 'MALE'),
                   ),
                 ),
                 Expanded(
                   flex: 1,
-                  child: GestureDetector(
-                    onTap: (){
+                  child: ReusableCard(
+                    colour: selectedGender == Gender.Female? kActiveCardColor : kInactiveCardColor,
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.Female;
                       });
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == Gender.Female? kActiveCardColor : kInactiveCardColor,
-                      cardChild: GenderCard(genderIcon: FontAwesomeIcons.venus, gender: 'FEMALE',),
-                    ),
+                    cardChild: GenderCard(genderIcon: FontAwesomeIcons.venus, gender: 'FEMALE',),
                   ),
                 ),
               ],
@@ -99,4 +95,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
