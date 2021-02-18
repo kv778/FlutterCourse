@@ -10,11 +10,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => LoadingScreen(),
-        '/second': (context) => LocationScreen(),
-      },
+      home: LoadingScreen(),
+      // initialRoute: '/',
+      // routes: {
+      //   '/': (context) => LoadingScreen(),
+      //   '/second': (context) => LocationScreen(),
+      // },
     );
   }
 }
