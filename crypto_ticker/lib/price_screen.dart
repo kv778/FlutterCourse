@@ -13,7 +13,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
   List<DropdownMenuItem> getDropdownItems() {
     List<DropdownMenuItem> list = [];
-    for(String currency in currenciesList) {
+    for (String currency in currenciesList) {
       list.add(DropdownMenuItem(
         child: Text(currency),
         value: currency,
@@ -24,9 +24,14 @@ class _PriceScreenState extends State<PriceScreen> {
 
   List<Widget> cupertinoPickerItems() {
     List<Widget> list = [];
-    for(String currency in currenciesList) {
+    for (String currency in currenciesList) {
       list.add(
-        Text(currency),
+        Text(
+          currency,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       );
     }
     return list;
