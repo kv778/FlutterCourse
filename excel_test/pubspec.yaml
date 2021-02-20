@@ -31,7 +31,8 @@ dependencies:
   excel: ^1.1.5
   flutter_dropzone: ^1.0.9
   file_picker: ^2.1.6
-  path_provider: ^1.6.27
+  path_provider: ^1.5.0
+  file_picker_web: ^1.0.0
 
 dev_dependencies:
   flutter_test:

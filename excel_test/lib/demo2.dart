@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +17,19 @@ class Demo2 extends StatefulWidget {
 class _Demo2State extends State<Demo2> {
   void getFile() async {
     FilePickerResult result = await FilePicker.platform.pickFiles();
-    print(result.toString());
-      var sResult = result.toString();
-      var bytes = File(sResult).readAsBytesSync();
-      // var excel = Excel.createExcel();
-      // or
-      var excel = Excel.decodeBytes(bytes);
-      for (var table in excel.tables.keys) {
-        print(table);
-        print(excel.tables[table].maxCols);
-        print(excel.tables[table].maxRows);
-        for (var row in excel.tables[table].rows) {
-          print("$row");
-        }
+
+    Uint8List file = result.files.single.bytes;
+
+    var excel = Excel.decodeBytes(file);
+    for (var table in excel.tables.keys) {
+      print(table);
+      print(excel.tables[table].maxCols);
+      print(excel.tables[table].maxRows);
+      for (var row in excel.tables[table].rows) {
+        print("$row");
       }
     }
-
+  }
 
   @override
   Widget build(BuildContext context) {
