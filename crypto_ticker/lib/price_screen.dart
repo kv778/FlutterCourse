@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
 import 'dart:io' show Platform;
-import 'package:http/http.dart' as http;
 import 'networking.dart';
 
 class PriceScreen extends StatefulWidget {
@@ -14,17 +12,17 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
   var priceData;
-  String priceUSD;
-  double priceAgain;
+  double priceUSD;
   String roundedPrice;
   NetworkHelper networkHelper = NetworkHelper(currency: 'priceUsd');
 
   void getPriceData() async {
     priceData = await networkHelper.getPrice();
     setState(() {
-      priceUSD = priceData['data']['priceUsd'];
-      priceAgain = double.parse(priceUSD);
-      roundedPrice = priceAgain.toStringAsFixed(0);
+      //priceUSD = priceData['data']['priceUsd'];
+      //priceAgain = double.parse(priceUSD);
+      priceUSD = double.parse(priceData);
+      roundedPrice = priceUSD.toStringAsFixed(0);
     });
   }
 

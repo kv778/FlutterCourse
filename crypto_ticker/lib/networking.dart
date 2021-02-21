@@ -9,6 +9,7 @@ class NetworkHelper {
   Future<dynamic> getPrice() async {
     http.Response response = await http.get('https://api.coincap.io/v2/assets/bitcoin');
     String data = response.body;
-    return jsonDecode(data);
+    price =  jsonDecode(data)['data']['priceUsd'];
+    return price;
   }
 }
