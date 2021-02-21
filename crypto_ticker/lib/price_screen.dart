@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
 import 'dart:io' show Platform;
+import 'package:http/http.dart' as http;
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -10,6 +13,19 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
+
+  @override
+  void initState() {
+    super.initState();
+    getPrice();
+  }
+
+  void getPrice() async {
+    http.Response response = await http.get('https://api.coincap.io/v2/assets/bitcoin');
+    String data = response.body;
+    var price = jsonDecode(data)['data']['priceUsd'];
+    print(price);
+  }
 
   DropdownButton androidDropdown() {
     List<DropdownMenuItem> list = [];
