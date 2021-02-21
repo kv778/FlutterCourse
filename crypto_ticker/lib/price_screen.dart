@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
 import 'dart:io' show Platform;
 import 'package:http/http.dart' as http;
+import 'networking.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -13,18 +13,19 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
+  var priceData;
+  String priceUSD;
+  double priceAgain;
+  String roundedPrice;
+  NetworkHelper networkHelper = NetworkHelper(currency: 'priceUsd');
 
-  @override
-  void initState() {
-    super.initState();
-    getPrice();
-  }
-
-  void getPrice() async {
-    http.Response response = await http.get('https://api.coincap.io/v2/assets/bitcoin');
-    String data = response.body;
-    var price = jsonDecode(data)['data']['priceUsd'];
-    print(price);
+  void getPriceData() async {
+    priceData = await networkHelper.getPrice();
+    setState(() {
+      priceUSD = priceData['data']['priceUsd'];
+      priceAgain = double.parse(priceUSD);
+      roundedPrice = priceAgain.toStringAsFixed(0);
+    });
   }
 
   DropdownButton androidDropdown() {
@@ -70,6 +71,12 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getPriceData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -90,7 +97,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1 BTC = $roundedPrice USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
