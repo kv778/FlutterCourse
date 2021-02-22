@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'networking.dart';
 
-var priceData;
-double priceUSD;
-String roundedPrice;
 NetworkHelper networkHelper = NetworkHelper(currency: 'priceUsd');
 
 class cryptoCard extends StatefulWidget {
@@ -16,12 +13,16 @@ class cryptoCard extends StatefulWidget {
 }
 
 class _cryptoCardState extends State<cryptoCard> {
+  var priceData;
+  double priceUSD;
+  String roundedPrice;
 
   void getPriceData() async {
     priceData = await networkHelper.getPrice(widget.cryptoType);
     setState(() {
       priceUSD = double.parse(priceData);
       roundedPrice = priceUSD.toStringAsFixed(0);
+      print(roundedPrice);
     });
   }
 
@@ -33,8 +34,10 @@ class _cryptoCardState extends State<cryptoCard> {
 
   @override
   void deactivate() {
+    priceData = 0;
+    priceUSD = 0;
+    roundedPrice='';
     super.deactivate();
-    widget.cryptoType = '';
   }
 
   @override
