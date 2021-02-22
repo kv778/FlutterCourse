@@ -1,12 +1,14 @@
+import 'package:crypto_ticker/price_screen.dart';
 import 'package:flutter/material.dart';
 import 'networking.dart';
 
 NetworkHelper networkHelper = NetworkHelper(currency: 'priceUsd');
 
 class cryptoCard extends StatefulWidget {
-  cryptoCard({this.cryptoID, this.cryptoType});
+  cryptoCard({this.cryptoID, this.cryptoType, this.currency});
   String cryptoID;
   String cryptoType;
+  String currency;
 
   @override
   _cryptoCardState createState() => _cryptoCardState();
@@ -51,7 +53,7 @@ class _cryptoCardState extends State<cryptoCard> {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
         child: Text(
-          '1 ${widget.cryptoID} = $roundedPrice USD',
+          '1 ${widget.cryptoID} = $roundedPrice ${widget.currency}',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.0,
