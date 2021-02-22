@@ -2,13 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
 import 'dart:io' show Platform;
-import 'networking.dart';
+import 'crypto_card.dart';
 
 String selectedCurrency = 'USD';
-var priceData;
-double priceUSD;
-String roundedPrice;
-NetworkHelper networkHelper = NetworkHelper(currency: 'priceUsd', crypto: 'bitcoin');
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -16,17 +12,6 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-
-  void getPriceData() async {
-    priceData = await networkHelper.getPrice();
-    setState(() {
-      //priceUSD = priceData['data']['priceUsd'];
-      //priceAgain = double.parse(priceUSD);
-      priceUSD = double.parse(priceData);
-      roundedPrice = priceUSD.toStringAsFixed(0);
-    });
-  }
-
   DropdownButton androidDropdown() {
     List<DropdownMenuItem> list = [];
     for (String currency in currenciesList) {
@@ -70,12 +55,6 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    getPriceData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -87,7 +66,15 @@ class _PriceScreenState extends State<PriceScreen> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: cryptoCard(),
+            child: cryptoCard(cryptoID: 'BTC',cryptoType: 'bitcoin',),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(18.9, 18.0, 18.0, 0),
+            child: cryptoCard(cryptoID: 'LTC',cryptoType: 'litecoin'),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(18.9, 18.0, 18.0, 0),
+            child: cryptoCard(cryptoID: 'DOGE',cryptoType: 'dogecoin'),
           ),
           Container(
             height: 150.0,
@@ -97,30 +84,6 @@ class _PriceScreenState extends State<PriceScreen> {
             child: Platform.isIOS ? iOSPicker() : androidDropdown(),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class cryptoCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.lightBlueAccent,
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-        child: Text(
-          '1 BTC = $roundedPrice USD',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.0,
-            color: Colors.white,
-          ),
-        ),
       ),
     );
   }
