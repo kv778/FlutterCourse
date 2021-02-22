@@ -66,15 +66,15 @@ class _PriceScreenState extends State<PriceScreen> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: cryptoCard(cryptoID: 'BTC',cryptoType: 'bitcoin', currency: selectedCurrency),
+            child: CryptoCard(cryptoID: 'BTC',cryptoType: 'bitcoin', currency: selectedCurrency),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(18.9, 18.0, 18.0, 0),
-            child: cryptoCard(cryptoID: 'LTC',cryptoType: 'litecoin', currency: selectedCurrency),
+            child: CryptoCard(cryptoID: 'LTC',cryptoType: 'litecoin', currency: selectedCurrency),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(18.9, 18.0, 18.0, 0),
-            child: cryptoCard(cryptoID: 'ETH',cryptoType: 'ethereum', currency: selectedCurrency),
+            child: CryptoCard(cryptoID: 'ETH',cryptoType: 'ethereum', currency: selectedCurrency),
           ),
           Container(
             height: 150.0,

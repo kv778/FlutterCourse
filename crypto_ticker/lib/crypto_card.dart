@@ -1,20 +1,20 @@
-import 'package:crypto_ticker/price_screen.dart';
 import 'package:flutter/material.dart';
 import 'networking.dart';
 
 NetworkHelper networkHelper = NetworkHelper(currency: 'priceUsd');
 
-class cryptoCard extends StatefulWidget {
-  cryptoCard({this.cryptoID, this.cryptoType, this.currency});
+// ignore: must_be_immutable
+class CryptoCard extends StatefulWidget {
+  CryptoCard({this.cryptoID, this.cryptoType, this.currency});
   String cryptoID;
   String cryptoType;
   String currency;
 
   @override
-  _cryptoCardState createState() => _cryptoCardState();
+  _CryptoCardState createState() => _CryptoCardState();
 }
 
-class _cryptoCardState extends State<cryptoCard> {
+class _CryptoCardState extends State<CryptoCard> {
   var priceData;
   double priceUSD;
   String roundedPrice;
