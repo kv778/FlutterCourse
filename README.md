@@ -1,2 +1,2 @@
 # FlutterCourse
-This repository contains projects for the The Complete Flutter Development Bootcamp by Dr Angela Yu on Udemy
+This repository contains projects for the The Complete Flutter Development Bootcamp with Dart by Dr Angela Yu.
